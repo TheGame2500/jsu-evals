@@ -34,3 +34,6 @@ node_modules
 
 # Environment vars
 .env
+
+# Bower
+bower_components
