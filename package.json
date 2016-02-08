@@ -1,0 +1,14 @@
+{
+  "name": "JSU-eval-app",
+  "version": "0.0.0",
+  "description": "An app for evaluating applicants' forms by pairs of evaluators.",
+  "main": "server.js",
+  "repository": "",
+  "author": "Gabriel Bira <gabriel.bira@gmail.com>",
+  "dependencies": {
+    "dotenv": "^1.2.0",
+    "express": "^4.12.4",
+    "imgur-search": "^1.0.1",
+    "mongoose": "^4.3.0"
+  }
+}
