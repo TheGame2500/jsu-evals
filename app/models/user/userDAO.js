@@ -1,6 +1,7 @@
 module.exports =  userDAO ;
 
 var user = require('./userModel.js');
+var bcrypt = require('bcrypt');
 
 var userDAO = {
     getById : getById,
@@ -16,7 +17,7 @@ var getById = function(id,done){
 }
 
 var addUser = function(username,password,role,done){
-    user.create({user_name : username, user_password:password,user_role_id:role},function(err,user){
+    user.create({user_name : username, user_password:bcrypt(password,8),user_role_id:role},function(err,user){
         if(err) {return done(err)};
         return done(null,user);
     })
