@@ -1,5 +1,5 @@
 var local=require("../config/passportStrategy");
-var user = require("../models/user.js");
+var controller = require('../controllers/controllers');
 
 module.exports=function(app,passport){
     passport.use(local);
