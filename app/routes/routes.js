@@ -17,7 +17,11 @@ module.exports=function(app,passport){
     app.get('/getUsers',function(req,res){
         controller.getAllUsers(function(err,data){
             if(err) {return err};
-            res.send(data);
+            res.json(data);
         });
+    })
+    
+    app.post('/addUser',function(req,res){
+        controller.addUser(req.body);
     })
 }

@@ -7,10 +7,11 @@
     </head>
     <body>
         <div class="container">
-            <div class="row"><h1 class="col-xs-offset-1">Admin Panel</h1></div>
+            <div class="row"><h1>Admin Panel</h1></div>
+            <div class="row"><h2>Users</h2></div>
             <div class="row">
                 <div class="col-xs-12">
-                    <table class="table-container">
+                    <table class="table table-bordered table-striped table-container">
                          <thead>
                             <tr>
                                 <th>Username</th>
@@ -20,6 +21,25 @@
                         </thead>
                     </table>
                 </div>
+            </div>
+            <div class="jumbotron">
+                <form id="add-user" class="form-inline">
+                  <div class="form-group">
+                    <label for="user_name">Name</label>
+                    <input type="text" class="form-control" name="user_name" placeholder="WHAT'S YA NAME FUCKER?">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail2">Email</label>
+                    <input type="password" class="form-control" name="user_password" placeholder="password">
+                  </div>
+                  <div class="form-group">
+                      <select name="user_role" class="select">
+                          <option value="0">Admin</option>
+                          <option value="1">Evaluator</option>
+                      </select>
+                  </div>
+                  <button type="submit" class="btn btn-default">Add user</button>
+                </form>
             </div>
         </div>
         <script type="text/javascript" src="jquery/dist/jquery.js"></script>
