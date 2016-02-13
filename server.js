@@ -7,7 +7,9 @@ var app = express();
 require('dotenv').load();
 mongoose.connect(process.env.MONGO_URI);
 
-app.use('/static', express.static(__dirname + '/public'));
+app.use(express.static('public'));
+app.use(express.static('bower_components'));
+
 config(app);
 
 var port = process.env.PORT || 8080;
