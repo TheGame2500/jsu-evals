@@ -13,4 +13,11 @@ module.exports=function(app,passport){
     app.get('/adminView',function(req,res){
         res.sendFile(process.cwd() + '/public/adminView.html');
     })
+    
+    app.get('/getUsers',function(req,res){
+        controller.getAllUsers(function(err,data){
+            if(err) {return err};
+            res.send(data);
+        });
+    })
 }
