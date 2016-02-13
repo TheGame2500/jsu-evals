@@ -5,7 +5,7 @@ var user = require('./userModel.js');
 var userDAO = {
     getById : getById,
     addUser : addUser,
-    // deleteUserById : deleteUserById
+    deleteUserById : deleteUserById
 }
 
 var getById = function(id,done){
@@ -22,4 +22,10 @@ var addUser = function(username,password,role,done){
     })
 }
 
+var deleteUserById = function (id,done){
+    user.remove({_id : id},function(err){
+        if(err) {return done(err)};
+        return done(null);
+    })
+}
 
