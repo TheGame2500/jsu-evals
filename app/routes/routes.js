@@ -22,6 +22,9 @@ module.exports=function(app,passport){
     })
     
     app.post('/addUser',function(req,res){
-        controller.addUser(req.body);
+        controller.addUser(req.body, function(err,data){
+            if(err) throw err;
+            res.send(data);
+        });
     })
 }
