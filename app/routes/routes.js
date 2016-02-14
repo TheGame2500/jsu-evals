@@ -8,10 +8,23 @@ module.exports=function(app,passport){
     })
     app.post('/testCredentials',
                 passport.authenticate('local', 
-                {failureRedirect:'/login', successRedirect : '/adminView'}
+                {failureRedirect:'/login', successRedirect : '/setView'}
             ))
+    app.get('/setView',function(req,res){
+        if(req.session.passport.user.user_role_id === '0')
+            res.redirect('/adminView');
+        else
+            res.redirect('/evaluatorView');
+    })        
+    
     app.get('/adminView',function(req,res){
-        res.sendFile(process.cwd() + '/public/adminView.html');
+        if(req.session.passport){
+            if(req.session.passport.user.user_role_id === '0')
+                res.sendFile(process.cwd() + '/public/adminView.html');
+            else
+                res.send("You're not allowed to go here!");
+        }
+        res.send("You're not allowed to go here!");
     })
     
     app.get('/getUsers',function(req,res){
