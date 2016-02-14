@@ -10,6 +10,8 @@ module.exports=function(app){
     passport.deserializeUser(function (id, done) {
       done(null, id);
     });
+    app.set('views', process.cwd() + '/public');
+    app.set('view engine', 'jade');
     app.use(expressSession({secret: 'mySecretKey', resave: false, saveUninitialized: false}));
     app.use(passport.initialize());
     app.use(passport.session());

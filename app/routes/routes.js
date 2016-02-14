@@ -4,7 +4,7 @@ var controller = require('../controllers/controllers');
 module.exports=function(app,passport){
     passport.use(local);
     app.get('/login',function(req,res){
-        res.sendFile(process.cwd() + '/public/loginView.html');
+        res.render('loginView');
     })
     app.post('/testCredentials',
                 passport.authenticate('local', 
@@ -20,11 +20,12 @@ module.exports=function(app,passport){
     app.get('/adminView',function(req,res){
         if(req.session.passport){
             if(req.session.passport.user.user_role_id === '0')
-                res.sendFile(process.cwd() + '/public/adminView.html');
+                res.render('adminView')
             else
                 res.send("You're not allowed to go here!");
         }
-        res.send("You're not allowed to go here!");
+        else
+            res.send("You're not allowed to go here!");
     })
     
     app.get('/getUsers',function(req,res){
