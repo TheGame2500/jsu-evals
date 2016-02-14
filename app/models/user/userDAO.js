@@ -17,7 +17,7 @@ var addUser = function(username,password,role,done){
 var deleteUserById = function (id,done){
     user.remove({_id : id},function(err){
         if(err) {return done(err)};
-        return done(null);
+        return done(null,true);
     })
 }
 

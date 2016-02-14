@@ -27,4 +27,10 @@ module.exports=function(app,passport){
             res.send(data);
         });
     })
+    app.post('/deleteUser',function(req,res){
+        controller.deleteUser(req.body, function(err,data){
+            if(err) throw err;
+            res.send(data);
+        });
+    })
 }
