@@ -1,5 +1,11 @@
 var mongoose = require('mongoose');
 
+var formSchema = new mongoose.Schema({
+    _id : mongoose.Schema.Types.ObjectId
+});
+
+var FormModel     = mongoose.model('FormModel',formSchema);
+
 var personalDataSchema = new mongoose.Schema({
     form_id    : {type : mongoose.Schema.Types.ObjectId, ref : FormModel},
     first_name : String,
@@ -65,18 +71,6 @@ var picsSchema = new mongoose.Schema({
     parental_agreement : { data: Buffer , contentType : String }
 })
 
-var formSchema = new mongoose.Schema({
-   _id : mongoose.Schema.Types.ObjectId
-})
 
-var PersonalData  = mongoose.model('PersonalData',personalDataSchema),
-    ContactData   = mongoose.model('ContactData',contactDataSchema),
-    EducationData = mongoose.model('EducationData',educationSchema),
-    ParentsData   = mongoose.model('ParentsData',parentsDataSchema),
-    FacultyData   = mongoose.model('FacultyData',facultiesSchema),
-    QuestionData  = mongoose.model('QuestionData',questionsSchema),
-    DetailsData   = mongoose.model('DetailsData',detailsSchema),
-    PicsData      = mongoose.model('PicsData',picsSchema),
-    FormModel     = mongoose.model('FormModel',formSchema);
 
-module.exports = FormModel;
+module.exports = personalDataSchema //!! access schemas by form.schema.tree.WhateverSchemaYouWanna
