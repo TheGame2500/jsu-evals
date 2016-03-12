@@ -6,10 +6,10 @@ var schemas = {
         last_name: String,
         first_name: String,
     }),
-    personalDataSchema = new mongoose.Schema({
+    personalDataSchema : new mongoose.Schema({
         form_id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: formSchema
+            ref: this.formSchema
         },
         age: Number,
         gender: String,
@@ -18,19 +18,19 @@ var schemas = {
         birth_date: String,
         CNP: String
     }),
-    contactDataSchema = new mongoose.Schema({
+    contactDataSchema : new mongoose.Schema({
         form_id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: formSchema
+            ref: this.formSchema
         },
         phone: String,
         mail: String,
         facebook: String
     }),
-    educationSchema = new mongoose.Schema({
+    educationSchema : new mongoose.Schema({
         form_id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: formSchema
+            ref: this.formSchema
         },
         highschool: String,
         city: String,
@@ -38,29 +38,29 @@ var schemas = {
         profile: String,
         study_lang: String
     }),
-    parentsDataSchema = new mongoose.Schema({
+    parentsDataSchema : new mongoose.Schema({
         form_id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: formSchema
+            ref: this.formSchema
         },
         first_name_p: String,
         last_name_p: String,
         mail_p: String,
         phone_p: String
     }),
-    facultiesSchema = new mongoose.Schema({
+    facultiesSchema : new mongoose.Schema({
         form_id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: formSchema
+            ref: this.formSchema
         },
         faculty_1: String,
         faculty_2: String,
         faculty_3: String
     }),
-    questionsSchema = new mongoose.Schema({
+    questionsSchema : new mongoose.Schema({
         form_id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: formSchema
+            ref: this.formSchema
         },
         why_our_uni: String,
         why_these_faculties: String,
@@ -68,19 +68,19 @@ var schemas = {
         why_our_summer_school: String,
         cool_things_you_did: String
     }),
-    detailsSchema = new mongoose.Schema({
+    detailsSchema : new mongoose.Schema({
         form_id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: formSchema
+            ref: this.formSchema
         },
         how_do_you_know_us: String,
         shirt_size: String,
         special_diet: String
     }),
-    picsSchema = new mongoose.Schema({
+    picsSchema : new mongoose.Schema({
         form_id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: formSchema
+            ref: this.formSchema
         },
         ID: {
             data: Buffer,
