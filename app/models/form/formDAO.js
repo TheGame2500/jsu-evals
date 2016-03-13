@@ -1,9 +1,8 @@
-var form = require('./formModel.js');
-console.log(typeof form);
+var formModels = require('./formModel.js');
 
 //creates a new form and returns it's ID
 var newForm = function(formObject, done) {
-    form.formSchema.create(formObject, function(err, form) {
+    formModels.Form.create(formObject, function(err, form) {
         if (err) return done(err)
         return done(null, form._id);
     })
@@ -12,7 +11,7 @@ var newForm = function(formObject, done) {
 //get a form by any one of it's properties and return all of it's properties
 
 var getFormByFilter = function(filter, done) {
-    form.formSchema.findOne({
+    formModels.Form.findOne({
         $or: [{
             '_id': filter
         }, {
@@ -28,10 +27,35 @@ var getFormByFilter = function(filter, done) {
 
 //delete form by ID
 var deleteForm = function(id, done) {
-    form.formSchema.remove({
+    formModels.Form.remove({
         _id: id
     }, function(err) {
         if (err) return done(err);
         return done(null, true);
     })
+}
+
+//generate CRU methods for every form children, since the Delete will happen only on parent deletion
+var newFormChild = function(childEntityName, childObject, done) {
+    formModels[childEntityName].create(childObject, function(err, child) {
+        if (err) return done(err);
+        return done(null, child._id);
+    })
+}
+
+var getFormChildByPK = function(childEntityName, parentKey, done) {
+    formModels[childEntityName].findOne({
+        'form': parentKey
+    }, function(err, child) {
+        if (err) return done(err);
+        return done(null, child);
+    })
+}
+
+module.exports = {
+    newForm: newForm,
+    getFormByFilter: getFormByFilter,
+    deleteForm: deleteForm,
+    newFormChild: newFormChild,
+    getFormChildByPK: getFormChildByPK
 }
