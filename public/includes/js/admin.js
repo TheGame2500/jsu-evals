@@ -1,6 +1,6 @@
 var table = $('.table-container').dataTable({
                 ajax: {
-                    "url": "https://jsu-evals-app-thegame2500.c9users.io/getUsers",
+                    "url": "localhost:8080/getUsers",
                     "dataSrc": ""
                 },
                 processing : true,
