@@ -1,1 +1,11 @@
 /* CSS declarations go here */
+body {
+	font-family: "Open Sans", arial, sans-serif;
+}
+header{
+	background-color: #000
+}
+.admin-menu {
+	text-align: right;
+	display: inline;
+}

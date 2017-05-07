@@ -1,22 +1,38 @@
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
-
+//import templates
 import './main.html';
+import '/client/views/importCSV/importCSV.js'
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
-});
+//register methods
+import '/imports/api/users/userIsAdmin';
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-});
+//import dependencies
+import { Meteor } from 'meteor/meteor';
+import { ReactiveVar } from 'meteor/reactive-var';
+import { Forms } from '/imports/api/forms/Forms';
+import { csvImports } from '/imports/api/csvImports/csvImports';
+import { _ } from 'meteor/underscore';
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
-});
+Template.main.onCreated(function mainOnCreated() {
+	const instance = this;
+	instance.userIsAdmin = new ReactiveVar(false);
+	instance.menuController = new ReactiveVar('evalForm')
+
+	Meteor.call('userIsAdmin',(e,r)=>{
+		if(e) return console.error(e);
+		instance.userIsAdmin.set(r);
+	})
+})
+Template.main.helpers({
+	userIsAdmin(){
+		return Template.instance().userIsAdmin.get();
+	},
+	menuController(){
+		return Template.instance().menuController.get();
+	}
+})
+
+Template.main.events({
+	'click .menu-controller' (e,tmp){
+		tmp.menuController.set($(e.target).data('menuitem'));
+	},
+})
