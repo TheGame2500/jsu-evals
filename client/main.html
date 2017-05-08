@@ -7,17 +7,17 @@
 <template name="main">
 	<body>
 		<header>
-			<div class="row">
-				<div class="col-xs-4">
+			<div class="nav">
+				<ul>
+				<li style="float:left">
 					{{> loginButtons}}
-				</div>
+				</li>
 				{{#if userIsAdmin}}
-					<div class='col-xs-offset-2 col-xs-6 admin-menu'>
-						<a href="#" class="menu-controller" data-menuitem="evalForm">Eval some forms</a> |
-						<a href="#" class="menu-controller" data-menuitem="importCSV">Import CSV</a> |
-						<a href="#" class="menu-controller" data-menuitem="calculateResults" >Calculate results</a>
-					</div>
+					<li><a href="#" class="menu-controller" data-menuitem="evalForm">Eval some forms</a></li>
+					<li><a href="#" class="menu-controller" data-menuitem="importCSV">Import CSV</a></li>
+					<li><a href="#" class="menu-controller" data-menuitem="calculateResults" >Calculate results</a></li>
 				{{/if}}
+				</ul>
 			</div>
 		</header>
 		<div class="container-fluid">

@@ -1,3 +1,12 @@
 <template name="evalForm">
-	
+	<h1> Evalueaza o aplicatie </h1>
+	<div class="row">
+		<div class="col-xs-8 col-xs-offset-2">
+			{{#if Template.subscriptionsReady}}
+				{{> quickForm schema=formSchema doc=doc id="evalForm" type="method" meteormethod="evalForm"}}
+			{{else}}
+				Loading ...
+			{{/if}}
+		</div>
+	</div>
 </template>
