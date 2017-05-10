@@ -6,7 +6,7 @@ import { _ } from 'meteor/underscore';
 Meteor.methods({
     importCSV : function (stuffToImport) {
         if(!Meteor.call('userIsAdmin',this.userId)) throw new Meteor.Error('importCSV.notAllowed','Only allowed for admins');
-        const objectFormSchema = Forms.simpleSchema().label();
+        const objectFormSchema = Forms.Schema.label();
         _.each(stuffToImport,row=>{
             const doc = {};
             let telefonCounter = 0; //duplicate key called 'Telefon' :(

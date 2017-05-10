@@ -5,6 +5,14 @@ SimpleSchema.debug=true;
 export const Forms = new Mongo.Collection('forms');
 
 const commonOpts = {
+	_id : {
+		type : String,
+		label : '_id',
+		autoform : {
+			type : 'hidden'
+		},
+		optional : true
+	},
 	ID : {
 		type : Number,
 		label : 'ID',

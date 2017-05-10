@@ -15,12 +15,17 @@ Meteor.methods({
 			notaRecomandare : doc.notaRecomandare,
 			notaVoluntariat : doc.notaVoluntariat
 		}
-
-		Forms.update({ID : doc.ID},{
+		console.log('Form_id', doc._id);
+		console.log('FormID', doc.ID);
+		try{
+		console.log(Forms.update(doc._id,{
 			$addToSet:{
 				'eval' : newEval
 			}
-		})
+		}))
+		} catch(ex){
+			console.error('Exception @ evalForm', ex);
+		}
 	},
 	disqualify : function(form_id) {
 	}

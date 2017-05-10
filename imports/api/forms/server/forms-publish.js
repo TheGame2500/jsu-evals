@@ -1,5 +1,12 @@
 import { Forms } from '/imports/api/forms/Forms';
 
 Meteor.publish('forms',function () {
-	return Forms.find({'eval.evaluator' : {$ne : this.userId}, disqualified : null}, {limit : 1})
+	console.log('userID ', this.userId)
+	return Forms.find({
+		'eval.evaluator' : {$ne : this.userId},
+		eval : {$not : {$size : 2}},
+		disqualified : null
+	}, {
+		limit : 1
+	})
 })
