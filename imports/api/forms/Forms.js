@@ -349,6 +349,17 @@ const commonOpts = {
 			type : 'hidden'	
 		},
 		optional : true
+	},
+	running : {
+		type : Array,
+		autoform : {
+			type : 'hidden'	
+		},
+		optional : true
+	},
+	'running.$' : {
+		type : String,
+
 	}
 }
 

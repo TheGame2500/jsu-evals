@@ -22,6 +22,9 @@ Meteor.methods({
 		console.log(Forms.update(doc._id,{
 			$addToSet:{
 				'eval' : newEval
+			},
+			$pull : {
+				running : self.userID
 			}
 		}))
 		} catch(ex){

@@ -2,11 +2,15 @@
 	<h1> Evalueaza o aplicatie </h1>
 	<div class="row">
 		<div class="col-xs-8 col-xs-offset-2">
-			{{#if Template.subscriptionsReady}}
+			{{#unless loading}}
+				{{#if doc}}
 				{{> quickForm schema=formSchema doc=doc id="evalForm" type="method" meteormethod="evalForm"}}
+				{{else}}
+					Nu mai exista aplicatii pt tine. Just go outside and see the sun.
+				{{/if}}
 			{{else}}
 				Loading ...
-			{{/if}}
+			{{/unless}}
 		</div>
 	</div>
 </template>

@@ -1,9 +1,10 @@
 import { Forms } from '/imports/api/forms/Forms';
 import '/imports/api/forms/methods.js';
 
+let doc = new ReactiveVar(undefined)
 Template.evalForm.onCreated(function evalFormOnCreated() {
 	const instance = this;
-	instance.subscribe('forms')
+	updateDoc()
 })
 
 Template.evalForm.helpers({
@@ -11,11 +12,20 @@ Template.evalForm.helpers({
 		return Forms.EvalSchema
 	},
 	doc() {
-		console.log(Forms.findOne())
-		return Forms.findOne()
-	}
+		return doc.get();
+	},
+  loading(){
+    return doc.get() === undefined;
+  }
 })
-
+function updateDoc(){
+  doc.set(undefined);
+  Meteor.call('getForm',(e,r)=>{
+    if(e) return console.error(e);
+    if(!r) doc.set(false);
+    doc.set(r)
+  })
+}
 let hooksObject = {
   before: {
     // Replace `formType` with the form `type` attribute to which this hook applies
@@ -49,7 +59,7 @@ let hooksObject = {
   },
 
   // Called when any submit operation succeeds
-  onSuccess: function(formType, result) {console.log('SUCCESS')},
+  onSuccess: function(formType, result) {updateDoc();console.log('SUCCESS')},
 
   // Called when any submit operation fails
   onError: function(formType, error) {console.log('ERROR',error)},

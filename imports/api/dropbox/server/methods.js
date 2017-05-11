@@ -36,6 +36,9 @@ function dropBoxCB(err,response){
 	if(err) return console.error('dropBoxCB err', err);
 	const data = response.data
 	matchDropboxData(data,headers);
-	if(data.hasMore)
+	console.log(Object.keys(data))
+	if(data.has_more){
+		console.log('\n\n\n\nFETCHING MOAR');
 		fetchDropBoxCursor(headers, data.cursor)
+	}
 }
