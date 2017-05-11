@@ -13,7 +13,8 @@ Meteor.methods({
 			evaluator : this.userId,
 			notaFormular : doc.notaFormular,
 			notaRecomandare : doc.notaRecomandare,
-			notaVoluntariat : doc.notaVoluntariat
+			notaVoluntariat : doc.notaVoluntariat,
+			feedBack : doc.feedBack
 		}
 		console.log('Form_id', doc._id);
 		console.log('FormID', doc.ID);

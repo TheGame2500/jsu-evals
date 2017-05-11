@@ -385,6 +385,10 @@ Forms.Schema = new SimpleSchema(_.extend(_.clone(commonOpts),{
 		min : 1,
 		max : 10,
 		label : 'Nota voluntariat'
+	},
+	'eval.$.feedBack' : {
+		type : String,
+		label : 'Feedback'
 	}
 }))
 
@@ -406,5 +410,15 @@ Forms.EvalSchema = new SimpleSchema(_.extend(_.clone(commonOpts),{
 		min : 1,
 		max : 10,
 		label : 'Nota voluntariat'
+	},
+	'feedBack' : {
+		type : String,
+		label : 'Feedback',
+		autoform : {
+			afFieldInput: {
+		    	type: "textarea",
+		    },
+		    rows : 10,
+		}
 	}
 }))
