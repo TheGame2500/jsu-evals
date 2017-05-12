@@ -23,8 +23,9 @@ function updateDoc(){
   doc.set(undefined);
   loading.set(true);
   Meteor.call('getForm',(e,r)=>{
-    loading.set(false);
     if(e) return console.error(e);
+    if(r && r.evalNo >=2) return updateDoc();
+    loading.set(false);
     doc.set(r)
   })
 }
