@@ -6,9 +6,12 @@ Meteor.methods({
 		if(!userID) return [];
 		console.log('userId ', userID)
 		let filter = {
-			'eval.evaluator' : {$ne : userID},
-			eval : {$not : {$size : 2}},
-			disqualified : null,
+			'eval.evaluator' : {
+				$ne : userID
+			},
+			evalNo : {
+				$lt : 2
+			},
 			running : {$ne : userID, $not : {$size : 2}}
 		}
 

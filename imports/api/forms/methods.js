@@ -23,8 +23,9 @@ Meteor.methods({
 			$addToSet:{
 				'eval' : newEval
 			},
+			$inc : { evalNo : 1 },
 			$pull : {
-				running : self.userID
+				running : self.userId
 			}
 		}))
 		} catch(ex){

@@ -2,6 +2,7 @@ import { Forms } from '/imports/api/forms/Forms';
 import '/imports/api/forms/methods.js';
 
 let doc = new ReactiveVar(undefined)
+let loading = new ReactiveVar(true);
 Template.evalForm.onCreated(function evalFormOnCreated() {
 	const instance = this;
 	updateDoc()
@@ -15,14 +16,15 @@ Template.evalForm.helpers({
 		return doc.get();
 	},
   loading(){
-    return doc.get() === undefined;
+    return loading.get();
   }
 })
 function updateDoc(){
   doc.set(undefined);
+  loading.set(true);
   Meteor.call('getForm',(e,r)=>{
+    loading.set(false);
     if(e) return console.error(e);
-    if(!r) doc.set(false);
     doc.set(r)
   })
 }
