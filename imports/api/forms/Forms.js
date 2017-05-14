@@ -4,7 +4,7 @@ SimpleSchema.extendOptions(['autoform']);
 SimpleSchema.debug=true;
 export const Forms = new Mongo.Collection('forms');
 
-const commonOpts = {
+Forms.commonOpts = {
 	_id : {
 		type : String,
 		label : '_id',
@@ -141,7 +141,7 @@ const commonOpts = {
 	},
 	telefonParinti : {
 		type : String,
-		label : 'Telefon',
+		label : 'Telefon parinti',
 		autoform: {
           type: 'hidden'
         }
@@ -359,11 +359,21 @@ const commonOpts = {
 	},
 	'running.$' : {
 		type : String,
-
+		autoform : {
+			type : 'hidden'	
+		},
+	},
+	facultateDistribuita : {
+		type : String,
+		optional : true,
+		label : 'Facultatea distribuita',
+		autoform : {
+			type : 'hidden'
+		}
 	}
 }
 
-Forms.Schema = new SimpleSchema(_.extend(_.clone(commonOpts),{
+Forms.Schema = new SimpleSchema(_.extend(_.clone(Forms.commonOpts),{
 	eval : {
 		type : Array,
 		maxCount : 2,
@@ -403,7 +413,7 @@ Forms.Schema = new SimpleSchema(_.extend(_.clone(commonOpts),{
 	}
 }))
 
-Forms.EvalSchema = new SimpleSchema(_.extend(_.clone(commonOpts),{
+Forms.EvalSchema = new SimpleSchema(_.extend(_.clone(Forms.commonOpts),{
 	'notaFormular' : {
 		type : Number,
 		min : 1,

@@ -1,0 +1,15 @@
+<template name="exportExcel">
+	<form id="export-excel" action="generateExcel" class="">
+		<div class="col-xs-offset-2 col-xs-8">
+			{{#each fields}}
+				<div class="form-group">
+					<label for="{{name}} "> {{label}} </label>
+					<input type="checkbox" name="{{name}}" class="form-control"/>
+				</div>
+			{{/each}}
+		<div class="form-group">
+		<button type="submit" class="btn btn-default"> Export Excel </button>
+		</div>
+		</div>
+	</form>
+</template>

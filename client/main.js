@@ -3,6 +3,7 @@ import './main.html';
 import '/client/views/importCSV/importCSV.js'
 import '/client/views/evalForm/evalForm.js'
 import '/client/views/results/results.js'
+import '/client/views/exportExcel/exportExcel.js'
 
 //register methods
 import '/imports/api/users/userIsAdmin';
