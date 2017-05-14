@@ -10,15 +10,14 @@ Meteor.methods({
 				$ne : userID
 			},
 			evalNo : {
-				$lt : 2
-			},
-			running : {$ne : userID, $not : {$size : 2}}
+				$lt : 1,
+			}
 		}
 
 		let form = Forms.findAndModify({
 			query : filter,
-			update : {$addToSet : {
-				running : userID
+			update : {$inc : {
+				evalNo : 1
 			}}
 		})
 
@@ -27,7 +26,12 @@ Meteor.methods({
 			//in case the form gets abandoned
 			Meteor.setTimeout(function(){
 				console.log('Form ', form._id, 'timed out from user ', userID);
-				Forms.update(form._id,{$pull : {running : userID}})
+				Forms.update({
+					_id : form._id, 
+					'eval.evaluator' : {$ne : userID}
+				},{$inc : {
+					evalNo : -1
+				}})
 			},30*60*1000)
 			return Forms.findOne(form._id)
 		}

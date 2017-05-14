@@ -1,4 +1,5 @@
 import { Forms } from '/imports/api/forms/Forms';
+import '../users/userIsAdmin.js';
 
 Meteor.methods({
 	evalForm : function(doc) {
@@ -22,16 +23,10 @@ Meteor.methods({
 		console.log(Forms.update(doc._id,{
 			$addToSet:{
 				'eval' : newEval
-			},
-			$inc : { evalNo : 1 },
-			$pull : {
-				running : self.userId
 			}
 		}))
 		} catch(ex){
 			console.error('Exception @ evalForm', ex);
 		}
-	},
-	disqualify : function(form_id) {
 	}
 })
