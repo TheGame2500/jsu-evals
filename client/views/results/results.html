@@ -1,0 +1,25 @@
+<template name="results">
+	<h1> Rezultate </h1>
+	<a href="{{downloadURL}}"> Download XLSX</a>
+	<div class="row">
+		<div class="col-xs-offset-2 col-xs-8">
+		{{#each buckets}}
+			<h2>{{name}}</h2>
+			<table class='table tabel-facultate'>
+				<thead>
+					<th> Nume </th>
+					<th> Medie </th>
+				</thead>
+				<tbody>
+				{{#each bucket}}
+					<tr>
+						<td>{{numePrenume}}</td>
+						<td>{{medie}}</td>
+					</tr>
+				{{/each}}
+				</tbody>
+			</table>
+		{{/each}}
+		</div>
+	</div>
+</template>

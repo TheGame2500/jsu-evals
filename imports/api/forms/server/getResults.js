@@ -1,4 +1,5 @@
 import { Forms } from '/imports/api/forms/Forms';
+import { Results } from '../../results/Results';
 import '../../users/userIsAdmin.js';
 
 Meteor.methods({
@@ -81,6 +82,10 @@ Meteor.methods({
         	})
         })
 
-        return buckets;
+        Results.insert({
+        	buckets,
+        	createdAt : new Date(),
+        	createdBy : this.userId
+        })
 	}
 })
