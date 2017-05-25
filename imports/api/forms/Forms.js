@@ -370,6 +370,14 @@ Forms.commonOpts = {
 		autoform : {
 			type : 'hidden'
 		}
+	},
+	medie : {
+		type : String,
+		optional : true,
+		label : 'Medie',
+		autoform : {
+			type : 'hidden'
+		}
 	}
 }
 

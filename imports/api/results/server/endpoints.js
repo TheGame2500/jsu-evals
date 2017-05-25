@@ -23,6 +23,7 @@ WebApp.connectHandlers.use('/getResults', (req, res, next) => {
 WebApp.connectHandlers.use('/generateExcel', (req, res, next) => {
   const requiredFields = [];
   _.each(req.query,(val,name)=>{
+    if(name == 'otherData') return;
     if(val == 'on') requiredFields.push(name);
   })
 
@@ -33,7 +34,7 @@ WebApp.connectHandlers.use('/generateExcel', (req, res, next) => {
     limit : 1
   }).fetch()[0];
 
-  const xlsx = createCustomXLSX(latestResult, requiredFields);
+  const xlsx = createCustomXLSX(latestResult, requiredFields, req.query.otherData === 'on');
     
   const headers = {
     'Content-type': 'application/vnd.openxmlformats',

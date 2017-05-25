@@ -1,7 +1,7 @@
 import { Excel } from 'meteor/nicolaslopezj:excel-export';
 import { Forms } from '/imports/api/forms/Forms';
 
-export default function(result, requiredFields) {
+export default function(result, requiredFields,otherData) {
 	const title = 'export_' + new Date();
 	let requiredForm_ids = [];
 	let formsFac = {};
@@ -20,10 +20,10 @@ export default function(result, requiredFields) {
 			title : Forms.commonOpts[fieldName].label
 		})
 	})
-
-	let data = Forms.find({_id : {$in : requiredForm_ids}}, {fields : queryFields}).fetch();
+	let idFilter = otherData ? {$nin : requiredForm_ids} : {$in : requiredForm_ids}
+	let data = Forms.find({_id : idFilter}, {fields : queryFields}).fetch();
 	
-	if(requiredFields.indexOf('facultateDistribuita') > -1) {
+	if(requiredFields.indexOf('facultateDistribuita') > -1 && !otherData) {
 		data = data.map(form=>{ 
 			form.facultateDistribuita = formsFac[form._id].replace(/-/g,' ')
 			return form;
